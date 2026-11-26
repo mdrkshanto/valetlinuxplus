@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Valet Linux Plus - Advanced local development experience for Linux</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+        <link rel="canonical" href="drivers.html">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Valet Linux Plus - Advanced local development experience for Linux">
+    <meta name="description" content="Valet Linux Plus. Advanced local development experience for Linux.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="drivers.html">
+    <meta property="og:title" content="Valet Linux Plus - Advanced local development experience for Linux">
+    <meta property="og:description" content="Valet Linux Plus. Advanced local development experience for Linux.">
+    <meta property="og:image" content="img/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://valetlinux.plus/">
+    <meta property="twitter:title" content="Valet Linux Plus - Advanced local development experience for Linux">
+    <meta property="twitter:description" content="Valet Linux Plus. Advanced local development experience for Linux.">
+    <meta property="twitter:image" content="img/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="preload" as="style" href="css/app.css" /><link rel="modulepreload" href="js/app.js" /><link rel="stylesheet" href="css/app.css" /><script type="module" src="js/app.js"></script>
+    
+    <script>
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (localStorage.theme === 'system') {
+            if (e.matches) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+
+        updateThemeAndSchemeColor();
+    });
+
+    function updateTheme() {
+        if (!('theme' in localStorage)) {
+            localStorage.theme = 'system';
+        }
+
+        switch (localStorage.theme) {
+            case 'system':
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+
+                document.documentElement.setAttribute('color-theme', 'system');
+                break;
+
+            case 'dark':
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('color-theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+                break;
+
+            case 'light':
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('color-theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
+                break;
+        }
+
+        updateThemeAndSchemeColor();
+    }
+
+    function updateThemeAndSchemeColor() {
+        if (! alwaysLightMode) {
+            if (document.documentElement.classList.contains('dark')) {
+                document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'dark');
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#171923');
+
+                return;
+            }
+
+            document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+        }
+    }
+
+    const alwaysLightMode = false;
+
+    updateTheme();
+</script>
+</head>
+<body
+    x-data="{
+        navIsOpen: false,
+    }"
+    class="w-full h-full font-sans antialiased text-gray-900 language-php"
+>
+
+    <a
+    id="skip-to-content-link"
+    href="drivers.html#main-content"
+    class="absolute bg-gray-100 px-4 py-2 top-3 left-3 text-gray-700 shadow-xl"
+>
+    Skip to content
+</a>
+
+    <div class="relative overflow-auto dark:bg-dark-700 min-h-screen" id="docsScreen">
+        <div class="relative lg:flex lg:items-start">
+            <aside class="hidden fixed top-0 bottom-0 left-0 z-20 h-full w-16 bg-gradient-to-b from-gray-100 to-white transition-all duration-300 overflow-hidden lg:sticky lg:w-80 lg:shrink-0 lg:flex lg:flex-col lg:justify-end lg:items-end 2xl:max-w-lg 2xl:w-full dark:from-dark-800 dark:to-dark-700">
+                <div class="relative min-h-0 flex-1 flex flex-col xl:w-80">
+                    <a href="index.html" class="flex items-center py-8 px-4 lg:px-8 xl:px-16">
+                        <img
+                            class="shrink-0 transition-all duration-300"
+                            src="img/valet-logo.png"
+                            alt="Valet"
+                        >
+                    </a>
+                    <div class="overflow-y-auto overflow-x-hidden px-4 lg:overflow-hidden lg:px-8 xl:px-16">
+                        <nav id="indexed-nav" class="hidden lg:block lg:mt-4">
+                            <div class="docs_sidebar">
+                                <ul>
+<li>
+<h2>Prologue</h2>
+<ul>
+<li>
+<a href="https://github.com/genesisweb/valet-linux-plus/releases">Release Notes</a>
+</li>
+<li>
+<a href="upgrade.html">Upgrade Guide</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Getting Started</h2>
+<ul>
+<li>
+<a href="requirements.html">Requirements</a>
+</li>
+<li>
+<a href="installation.html">Installation</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Commands</h2>
+<ul>
+<li>
+<a href="php-version.html">Switch PHP Version</a>
+</li>
+<li>
+<a href="isolate-version.html">Isolate PHP Version</a>
+</li>
+<li>
+<a href="serving-sites.html">Serving Sites</a>
+</li>
+<li>
+<a href="database.html">Database</a>
+</li>
+<li>
+<a href="other.html">Other</a>
+</li>
+<li>
+<a href="drivers.html">Drivers</a>
+</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <header
+                class="lg:hidden"
+                @keydown.window.escape="navIsOpen = false"
+                @click.away="navIsOpen = false"
+            >
+                <div class="relative mx-auto w-full py-10 bg-white transition duration-200 dark:bg-dark-700">
+                    <div class="mx-auto px-8 sm:px-16 flex items-center justify-between">
+                        <a href="index.html" class="flex items-center">
+                            <img class="" src="img/valet-logo.png" alt="Valet" width="150">
+                        </a>
+                        <div class="flex-1 flex items-center justify-end">
+                            <button id="header__sun" onclick="toSystemMode()" title="Switch to system theme" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                                 </svg>
+                            </button>
+                            <button id="header__moon" onclick="toLightMode()" title="Switch to light mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+                                </svg>
+                            </button>
+                            <button id="header__indeterminate" onclick="toDarkMode()" title="Switch to dark mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z" />
+                                </svg>
+                            </button>
+                            <button class="ml-2 relative w-10 h-10 p-2 text-red-600 lg:hidden focus:outline-none focus:shadow-outline" aria-label="Menu" @click.prevent="navIsOpen = !navIsOpen">
+                                <svg x-show="! navIsOpen" x-transition.opacity class="absolute inset-0 mt-2 ml-2 w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                                <svg x-show="navIsOpen" x-transition.opacity x-cloak class="absolute inset-0 mt-2 ml-2 w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <span :class="{ 'shadow-sm': navIsOpen }" class="absolute inset-0 z-20 pointer-events-none"></span>
+                </div>
+                <div
+                    x-show="navIsOpen"
+                    x-transition:enter="duration-150"
+                    x-transition:leave="duration-100 ease-in"
+                    x-cloak
+                >
+                    <nav
+                        x-show="navIsOpen"
+                        x-cloak
+                        class="absolute w-full transform origin-top shadow-sm z-10"
+                        x-transition:enter="duration-150 ease-out"
+                        x-transition:enter-start="opacity-0 -translate-y-8 scale-75"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="duration-100 ease-in"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 -translate-y-8 scale-75"
+                    >
+                        <div class="relative p-8 bg-white docs_sidebar dark:bg-dark-600">
+                            <ul>
+<li>
+<h2>Prologue</h2>
+<ul>
+<li>
+<a href="https://github.com/genesisweb/valet-linux-plus/releases">Release Notes</a>
+</li>
+<li>
+<a href="upgrade.html">Upgrade Guide</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Getting Started</h2>
+<ul>
+<li>
+<a href="requirements.html">Requirements</a>
+</li>
+<li>
+<a href="installation.html">Installation</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Commands</h2>
+<ul>
+<li>
+<a href="php-version.html">Switch PHP Version</a>
+</li>
+<li>
+<a href="isolate-version.html">Isolate PHP Version</a>
+</li>
+<li>
+<a href="serving-sites.html">Serving Sites</a>
+</li>
+<li>
+<a href="database.html">Database</a>
+</li>
+<li>
+<a href="other.html">Other</a>
+</li>
+<li>
+<a href="drivers.html">Drivers</a>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <section class="flex-1 dark:bg-dark-700">
+                <div class="max-w-screen-lg px-8 sm:px-16 lg:px-24">
+
+                    <section class="mt-8 md:mt-16">
+                        <section class="docs_main max-w-prose">
+                            <div id="main-content">
+    <ul>
+<li></li>
+</ul>
+<p><a name="valet-drivers"></a></p>
+<h2>Valet drivers</h2>
+<p>Valet uses drivers to handle requests.</p>
+<p>By default these are included:</p>
+<ul>
+<li>CakePHP 3</li>
+<li>Craft</li>
+<li>Drupal</li>
+<li>Jigsaw</li>
+<li>Laravel</li>
+<li>Lumen</li>
+<li>Magento</li>
+<li>Magento 2</li>
+<li>Neos</li>
+<li>Pimcore 5</li>
+<li>Shopware 5</li>
+<li>Slim</li>
+<li>Statamic</li>
+<li>Static HTML</li>
+<li>Symfony</li>
+<li>Typo3</li>
+<li>WordPress / Bedrock</li>
+<li>Zend Framework</li>
+</ul>
+<h3>Custom Valet Drivers</h3>
+<p>You can write your own Valet &quot;driver&quot; to serve PHP applications running on another framework or CMS that is not natively supported by Valet. When you install Valet Linux+, a <code>~/.valet/Drivers</code> directory is created which contains a <code>SampleValetDriver.php</code> file. This file contains a sample driver implementation to demonstrate how to write a custom driver. Writing a driver only requires you to implement three methods: <code>serves</code>, <code>isStaticFile</code>, and <code>frontControllerPath</code>.</p>
+<p>All three methods receive the <code>$sitePath</code>, <code>$siteName</code>, and <code>$uri</code> values as their arguments. The <code>$sitePath</code> is the fully qualified path to the site being served on your machine, such as <code>/Users/Lisa/Sites/my-project</code>. The <code>$siteName</code> is the &quot;host&quot; / &quot;site name&quot; portion of the domain (<code>my-project</code>). The <code>$uri</code> is the incoming request URI (<code>/foo/bar</code>).</p>
+<p>Once you have completed your custom Valet Linux+ driver, place it in the <code>~/.valet/Drivers</code> directory using the <code>FrameworkValetDriver.php</code> naming convention. For example, if you are writing a custom valet driver for WordPress, your file name should be <code>WordPressValetDriver.php</code>.</p>
+<p>Let's take a look at a sample implementation of each method your custom Valet Linux+ driver should implement.</p>
+<h4>The <code>serves</code> Method</h4>
+<p>The <code>serves</code> method should return <code>true</code> if your driver should handle the incoming request. Otherwise, the method should return <code>false</code>. So, within this method you should attempt to determine if the given <code>$sitePath</code> contains a project of the type you are trying to serve.</p>
+<p>For example, let's pretend we are writing a <code>WordPressValetDriver</code>. Our serve method might look something like this:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #697098;">/**</span></div><div class='line'><span style="color: #697098;"> * Determine if the driver serves the request.</span></div><div class='line'><span style="color: #697098;"> *</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $sitePath</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $siteName</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $uri</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@return</span><span style="color: #697098;"> </span><span style="color: #C792EA;">bool</span></div><div class='line'><span style="color: #697098;"> </span><span style="color: #697098;">*/</span></div><div class='line'><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">serves</span><span style="color: #D9F5DD;">(</span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$siteName</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$uri</span><span style="color: #D9F5DD;">)</span></div><div class='line'><span style="color: #BFC7D5;">{</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #89DDFF;">is_dir</span><span style="color: #BFC7D5;">($</span><span style="color: #BEC5D4;">sitePath</span><span style="color: #89DDFF;">.</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #C3E88D;">/wp-admin</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #BFC7D5;">);</span></div><div class='line'><span style="color: #BFC7D5;">}</span></div></code></pre>
+</div>
+<h4>The <code>isStaticFile</code> Method</h4>
+<p>The <code>isStaticFile</code> should determine if the incoming request is for a file that is &quot;static&quot;, such as an image or a stylesheet. If the file is static, the method should return the fully qualified path to the static file on disk. If the incoming request is not for a static file, the method should return <code>false</code>:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #697098;">/**</span></div><div class='line'><span style="color: #697098;"> * Determine if the incoming request is for a static file.</span></div><div class='line'><span style="color: #697098;"> *</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $sitePath</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $siteName</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $uri</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@return</span><span style="color: #697098;"> </span><span style="color: #C792EA;">string</span><span style="color: #697098;">|</span><span style="color: #C792EA;">false</span></div><div class='line'><span style="color: #697098;"> </span><span style="color: #697098;">*/</span></div><div class='line'><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">isStaticFile</span><span style="color: #D9F5DD;">(</span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$siteName</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$uri</span><span style="color: #D9F5DD;">)</span></div><div class='line'><span style="color: #BFC7D5;">{</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">if</span><span style="color: #BFC7D5;"> (</span><span style="color: #89DDFF;">file_exists</span><span style="color: #BFC7D5;">($</span><span style="color: #BEC5D4;">staticFilePath</span><span style="color: #82AAFF;"> </span><span style="color: #C792EA;">=</span><span style="color: #82AAFF;"> </span><span style="color: #BFC7D5;">$</span><span style="color: #BEC5D4;">sitePath</span><span style="color: #89DDFF;">.</span><span style="color: #D9F5DD;">&#39;/</span><span style="color: #80CBC4;">public</span><span style="color: #D9F5DD;">/&#39;</span><span style="color: #89DDFF;">.</span><span style="color: #BFC7D5;">$</span><span style="color: #BEC5D4;">uri</span><span style="color: #BFC7D5;">)) {</span></div><div class='line'><span style="color: #BFC7D5;">        </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #BEC5D4;">$staticFilePath</span><span style="color: #BFC7D5;">;</span></div><div class='line'><span style="color: #BFC7D5;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">false</span><span style="color: #BFC7D5;">;</span></div><div class='line'><span style="color: #BFC7D5;">}</span></div></code></pre>
+</div>
+<blockquote>
+<p>[!NOTE]
+The <code>isStaticFile</code> method will only be called if the <code>serves</code> method returns <code>true</code> for the incoming request and the request URI is not <code>/</code>.</p>
+</blockquote>
+<h4>The <code>frontControllerPath</code> Method</h4>
+<p>The <code>frontControllerPath</code> method should return the fully qualified path to your application's &quot;front controller&quot;, which is typically your &quot;index.php&quot; file or equivalent:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #697098;">/**</span></div><div class='line'><span style="color: #697098;"> * Get the fully resolved path to the application&#39;s front controller.</span></div><div class='line'><span style="color: #697098;"> *</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $sitePath</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $siteName</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $uri</span></div><div class='line'><span style="color: #697098;"> * </span><span style="color: #C792EA;">@return</span><span style="color: #697098;"> </span><span style="color: #C792EA;">string</span></div><div class='line'><span style="color: #697098;"> </span><span style="color: #697098;">*/</span></div><div class='line'><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">frontControllerPath</span><span style="color: #D9F5DD;">(</span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$siteName</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$uri</span><span style="color: #D9F5DD;">)</span></div><div class='line'><span style="color: #BFC7D5;">{</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #89DDFF;">.</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #C3E88D;">/public/index.php</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #BFC7D5;">;</span></div><div class='line'><span style="color: #BFC7D5;">}</span></div></code></pre>
+</div>
+<h3>Local Drivers</h3>
+<p>If you would like to define a custom Valet driver for a single application, create a <code>LocalValetDriver.php</code> in the application's root directory. Your custom driver may extend the base <code>ValetDriver</code> class or extend an existing application specific driver such as the <code>LaravelValetDriver</code>:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #C792EA;">class</span><span style="color: #BFC7D5;"> </span><span style="color: #FFCB6B;">LocalValetDriver</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">extends</span><span style="color: #BFC7D5;"> </span><span style="color: #A9C77D;">LaravelValetDriver</span></div><div class='line'><span style="color: #BFC7D5;">{</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #697098;">/**</span></div><div class='line'><span style="color: #697098;">     * Determine if the driver serves the request.</span></div><div class='line'><span style="color: #697098;">     *</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $sitePath</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $siteName</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $uri</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@return</span><span style="color: #697098;"> </span><span style="color: #C792EA;">bool</span></div><div class='line'><span style="color: #697098;">     </span><span style="color: #697098;">*/</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">serves</span><span style="color: #D9F5DD;">(</span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$siteName</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$uri</span><span style="color: #D9F5DD;">)</span></div><div class='line'><span style="color: #BFC7D5;">    {</span></div><div class='line'><span style="color: #BFC7D5;">        </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">true</span><span style="color: #BFC7D5;">;</span></div><div class='line'><span style="color: #BFC7D5;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #697098;">/**</span></div><div class='line'><span style="color: #697098;">     * Get the fully resolved path to the application&#39;s front controller.</span></div><div class='line'><span style="color: #697098;">     *</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $sitePath</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $siteName</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@param</span><span style="color: #697098;">  </span><span style="color: #C792EA;">string</span><span style="color: #697098;">  $uri</span></div><div class='line'><span style="color: #697098;">     * </span><span style="color: #C792EA;">@return</span><span style="color: #697098;"> </span><span style="color: #C792EA;">string</span></div><div class='line'><span style="color: #697098;">     </span><span style="color: #697098;">*/</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #C792EA;">public</span><span style="color: #BFC7D5;"> </span><span style="color: #C792EA;">function</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">frontControllerPath</span><span style="color: #D9F5DD;">(</span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$siteName</span><span style="color: #BFC7D5;">, </span><span style="color: #BEC5D4;">$uri</span><span style="color: #D9F5DD;">)</span></div><div class='line'><span style="color: #BFC7D5;">    {</span></div><div class='line'><span style="color: #BFC7D5;">        </span><span style="color: #C792EA;">return</span><span style="color: #BFC7D5;"> </span><span style="color: #BEC5D4;">$sitePath</span><span style="color: #89DDFF;">.</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #C3E88D;">/public_html/index.php</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #BFC7D5;">;</span></div><div class='line'><span style="color: #BFC7D5;">    }</span></div><div class='line'><span style="color: #BFC7D5;">}</span></div></code></pre>
+</div>
+</div>
+                        </section>
+                    </section>
+                </div>
+            </section>
+
+            <div class="max-lg:hidden fixed right-8 bottom-8 border-2 border-solid rounded-3xl">
+                <div class="flex-1 flex items-center justify-end">
+                    <button id="header__sun" onclick="toSystemMode()" title="Switch to system theme" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun m-auto" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                        </svg>
+                    </button>
+                    <button id="header__moon" onclick="toLightMode()" title="Switch to light mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class=" m-auto">
+                            <path fill="currentColor" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+                        </svg>
+                    </button>
+                    <button id="header__indeterminate" onclick="toDarkMode()" title="Switch to dark mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class=" m-auto">
+                            <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

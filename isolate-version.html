@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Valet Linux Plus - Advanced local development experience for Linux</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+        <link rel="canonical" href="isolate-version.html">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Valet Linux Plus - Advanced local development experience for Linux">
+    <meta name="description" content="Valet Linux Plus. Advanced local development experience for Linux.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="isolate-version.html">
+    <meta property="og:title" content="Valet Linux Plus - Advanced local development experience for Linux">
+    <meta property="og:description" content="Valet Linux Plus. Advanced local development experience for Linux.">
+    <meta property="og:image" content="img/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://valetlinux.plus/">
+    <meta property="twitter:title" content="Valet Linux Plus - Advanced local development experience for Linux">
+    <meta property="twitter:description" content="Valet Linux Plus. Advanced local development experience for Linux.">
+    <meta property="twitter:image" content="img/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="preload" as="style" href="css/app.css" /><link rel="modulepreload" href="js/app.js" /><link rel="stylesheet" href="css/app.css" /><script type="module" src="js/app.js"></script>
+    
+    <script>
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (localStorage.theme === 'system') {
+            if (e.matches) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+
+        updateThemeAndSchemeColor();
+    });
+
+    function updateTheme() {
+        if (!('theme' in localStorage)) {
+            localStorage.theme = 'system';
+        }
+
+        switch (localStorage.theme) {
+            case 'system':
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+
+                document.documentElement.setAttribute('color-theme', 'system');
+                break;
+
+            case 'dark':
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('color-theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+                break;
+
+            case 'light':
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('color-theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
+                break;
+        }
+
+        updateThemeAndSchemeColor();
+    }
+
+    function updateThemeAndSchemeColor() {
+        if (! alwaysLightMode) {
+            if (document.documentElement.classList.contains('dark')) {
+                document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'dark');
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#171923');
+
+                return;
+            }
+
+            document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+        }
+    }
+
+    const alwaysLightMode = false;
+
+    updateTheme();
+</script>
+</head>
+<body
+    x-data="{
+        navIsOpen: false,
+    }"
+    class="w-full h-full font-sans antialiased text-gray-900 language-php"
+>
+
+    <a
+    id="skip-to-content-link"
+    href="isolate-version.html#main-content"
+    class="absolute bg-gray-100 px-4 py-2 top-3 left-3 text-gray-700 shadow-xl"
+>
+    Skip to content
+</a>
+
+    <div class="relative overflow-auto dark:bg-dark-700 min-h-screen" id="docsScreen">
+        <div class="relative lg:flex lg:items-start">
+            <aside class="hidden fixed top-0 bottom-0 left-0 z-20 h-full w-16 bg-gradient-to-b from-gray-100 to-white transition-all duration-300 overflow-hidden lg:sticky lg:w-80 lg:shrink-0 lg:flex lg:flex-col lg:justify-end lg:items-end 2xl:max-w-lg 2xl:w-full dark:from-dark-800 dark:to-dark-700">
+                <div class="relative min-h-0 flex-1 flex flex-col xl:w-80">
+                    <a href="index.html" class="flex items-center py-8 px-4 lg:px-8 xl:px-16">
+                        <img
+                            class="shrink-0 transition-all duration-300"
+                            src="img/valet-logo.png"
+                            alt="Valet"
+                        >
+                    </a>
+                    <div class="overflow-y-auto overflow-x-hidden px-4 lg:overflow-hidden lg:px-8 xl:px-16">
+                        <nav id="indexed-nav" class="hidden lg:block lg:mt-4">
+                            <div class="docs_sidebar">
+                                <ul>
+<li>
+<h2>Prologue</h2>
+<ul>
+<li>
+<a href="https://github.com/genesisweb/valet-linux-plus/releases">Release Notes</a>
+</li>
+<li>
+<a href="upgrade.html">Upgrade Guide</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Getting Started</h2>
+<ul>
+<li>
+<a href="requirements.html">Requirements</a>
+</li>
+<li>
+<a href="installation.html">Installation</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Commands</h2>
+<ul>
+<li>
+<a href="php-version.html">Switch PHP Version</a>
+</li>
+<li>
+<a href="isolate-version.html">Isolate PHP Version</a>
+</li>
+<li>
+<a href="serving-sites.html">Serving Sites</a>
+</li>
+<li>
+<a href="database.html">Database</a>
+</li>
+<li>
+<a href="other.html">Other</a>
+</li>
+<li>
+<a href="drivers.html">Drivers</a>
+</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <header
+                class="lg:hidden"
+                @keydown.window.escape="navIsOpen = false"
+                @click.away="navIsOpen = false"
+            >
+                <div class="relative mx-auto w-full py-10 bg-white transition duration-200 dark:bg-dark-700">
+                    <div class="mx-auto px-8 sm:px-16 flex items-center justify-between">
+                        <a href="index.html" class="flex items-center">
+                            <img class="" src="img/valet-logo.png" alt="Valet" width="150">
+                        </a>
+                        <div class="flex-1 flex items-center justify-end">
+                            <button id="header__sun" onclick="toSystemMode()" title="Switch to system theme" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                                 </svg>
+                            </button>
+                            <button id="header__moon" onclick="toLightMode()" title="Switch to light mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+                                </svg>
+                            </button>
+                            <button id="header__indeterminate" onclick="toDarkMode()" title="Switch to dark mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z" />
+                                </svg>
+                            </button>
+                            <button class="ml-2 relative w-10 h-10 p-2 text-red-600 lg:hidden focus:outline-none focus:shadow-outline" aria-label="Menu" @click.prevent="navIsOpen = !navIsOpen">
+                                <svg x-show="! navIsOpen" x-transition.opacity class="absolute inset-0 mt-2 ml-2 w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                                <svg x-show="navIsOpen" x-transition.opacity x-cloak class="absolute inset-0 mt-2 ml-2 w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <span :class="{ 'shadow-sm': navIsOpen }" class="absolute inset-0 z-20 pointer-events-none"></span>
+                </div>
+                <div
+                    x-show="navIsOpen"
+                    x-transition:enter="duration-150"
+                    x-transition:leave="duration-100 ease-in"
+                    x-cloak
+                >
+                    <nav
+                        x-show="navIsOpen"
+                        x-cloak
+                        class="absolute w-full transform origin-top shadow-sm z-10"
+                        x-transition:enter="duration-150 ease-out"
+                        x-transition:enter-start="opacity-0 -translate-y-8 scale-75"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="duration-100 ease-in"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 -translate-y-8 scale-75"
+                    >
+                        <div class="relative p-8 bg-white docs_sidebar dark:bg-dark-600">
+                            <ul>
+<li>
+<h2>Prologue</h2>
+<ul>
+<li>
+<a href="https://github.com/genesisweb/valet-linux-plus/releases">Release Notes</a>
+</li>
+<li>
+<a href="upgrade.html">Upgrade Guide</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Getting Started</h2>
+<ul>
+<li>
+<a href="requirements.html">Requirements</a>
+</li>
+<li>
+<a href="installation.html">Installation</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Commands</h2>
+<ul>
+<li>
+<a href="php-version.html">Switch PHP Version</a>
+</li>
+<li>
+<a href="isolate-version.html">Isolate PHP Version</a>
+</li>
+<li>
+<a href="serving-sites.html">Serving Sites</a>
+</li>
+<li>
+<a href="database.html">Database</a>
+</li>
+<li>
+<a href="other.html">Other</a>
+</li>
+<li>
+<a href="drivers.html">Drivers</a>
+</li>
+</ul>
+</li>
+</ul>
+
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <section class="flex-1 dark:bg-dark-700">
+                <div class="max-w-screen-lg px-8 sm:px-16 lg:px-24">
+
+                    <section class="mt-8 md:mt-16">
+                        <section class="docs_main max-w-prose">
+                            <div id="main-content">
+    <ul>
+<li></li>
+</ul>
+<p><a name="isolating-php-versions"></a></p>
+<h2>Isolating PHP Versions</h2>
+<p>Valet Linux Plus allows you to isolate specific sites to run on different PHP versions without changing the global PHP version. This is particularly useful for maintaining compatibility with older projects or testing different PHP versions.</p>
+<h3>Isolating a Site</h3>
+<p>To isolate a site to use a specific PHP version, use the valet isolate command:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">isolate</span><span style="color: #BFC7D5;"> {phpVersion} --</span><span style="color: #FFCB6B;">site</span><span style="color: #C792EA;">=</span><span style="color: #BFC7D5;">{siteName} --secure</span></div></code></pre>
+</div>
+<ul>
+<li>
+<strong>{phpVersion}</strong> The PHP version to use (e.g., php@7.4, php@8.0).</li>
+<li>
+<strong>--site=</strong> (Optional) Specify the site to isolate. If not provided, the current working directory is used.</li>
+<li>
+<strong>--secure</strong> (Optional) Create a secure (HTTPS) isolated site.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>To isolate a site to use PHP 7.4 and secure it with HTTPS:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">isolate</span><span style="color: #BFC7D5;"> </span><span style="color: #BFC7D5;">php@7.4</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">--site=example.test</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">--secure</span></div></code></pre>
+</div>
+<p>If you are in the site's directory, you can simply run:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">isolate</span><span style="color: #BFC7D5;"> </span><span style="color: #BFC7D5;">php@7.4</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">--secure</span></div></code></pre>
+</div>
+<h3>Listing Isolated Sites</h3>
+<p>To list all isolated sites along with their isolated PHP versions, use the <code>valet isolated</code> command:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">isolated</span></div></code></pre>
+</div>
+<p>This command will display a list of all sites that have been isolated and the PHP versions they are using.</p>
+<h3>Removing Isolation</h3>
+<p>To remove the isolation for a specific site, use the <code>valet unisolate</code> command:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">unisolate</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">--site=</span><span style="color: #BFC7D5;">{siteName}</span></div></code></pre>
+</div>
+<ul>
+<li>
+<strong>--site=</strong> (Optional) Specify the site to remove isolation from. If not provided, the current working directory is used.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>To remove isolation from a specific site:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">unisolate</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">--site=example.test</span></div></code></pre>
+</div>
+<p>If you are in the site's directory, you can simply run:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="shell" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #BFC7D5;">valet </span><span style="color: #BFC7D5;">unisolate</span></div></code></pre>
+</div>
+</div>
+                        </section>
+                    </section>
+                </div>
+            </section>
+
+            <div class="max-lg:hidden fixed right-8 bottom-8 border-2 border-solid rounded-3xl">
+                <div class="flex-1 flex items-center justify-end">
+                    <button id="header__sun" onclick="toSystemMode()" title="Switch to system theme" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun m-auto" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                        </svg>
+                    </button>
+                    <button id="header__moon" onclick="toLightMode()" title="Switch to light mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class=" m-auto">
+                            <path fill="currentColor" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+                        </svg>
+                    </button>
+                    <button id="header__indeterminate" onclick="toDarkMode()" title="Switch to dark mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class=" m-auto">
+                            <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div></body>
+</html>
